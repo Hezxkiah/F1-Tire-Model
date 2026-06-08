@@ -42,7 +42,7 @@ Where:
 - $\beta_1$ (the slope) = **degradation rate** in seconds per lap
 - $\beta_0$ (the intercept) = **base pace** — the theoretical lap time on a fresh tire
 
-A higher slope means faster degradation. A negative slope (pace improving with age) typically indicates a data artifact such as mixed driver speeds across stints.
+A higher slope means faster degradation. A negative slope (pace improving with age) typically indicates a data artifact, such as mixed driver speeds across stints.
 
 #### Why Per-Stint Regression?
 
@@ -72,47 +72,6 @@ F1 Model/
 ├── README.md            # This file
 └── venv/                # Python virtual environment (not tracked)
 ```
-
----
-
-## Setup & Installation
-
-**Prerequisites:** Python 3.11+
-
-**1. Clone the repository**
-```bash
-git clone <your-repo-url>
-cd F1-Model
-```
-
-**2. Create and activate a virtual environment**
-
-On Windows (PowerShell):
-```powershell
-python -m venv venv
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-. .\venv\Scripts\Activate.ps1
-```
-
-On Mac/Linux:
-```bash
-python -m venv venv
-source venv/bin/activate
-```
-
-**3. Install dependencies**
-```bash
-pip install fastf1 pandas numpy matplotlib
-```
-
-**4. Run the notebook**
-
-Open `model.ipynb` in VS Code or Jupyter and run cells sequentially.
-
-> **Note:** FastF1 caches downloaded data locally. The first run will take longer while data is fetched. Subsequent runs load from cache and are much faster.
-
----
-
 ## Dependencies
 
 | Library | Purpose |
@@ -153,4 +112,4 @@ Session data is sourced via [FastF1](https://docs.fastf1.dev/), an open-source P
 
 ## Author
 
-Hezekiah — Computer Science & Math student at Texas A&M University
+Hezekiah Gitenyi — Computer Science & Math student at Texas A&M University
