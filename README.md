@@ -99,7 +99,7 @@ F1 Model/
 
 ## Planned Extensions
 
-- [ ] Combine degradation rate and base pace into a single efficiency score per compound
+- [x] Combine degradation rate and base pace into a single efficiency score per compound
 - [ ] Scale analysis across multiple races in a season to build circuit-by-circuit tire profiles
 - [ ] Add weather data integration (track temperature vs degradation rate)
 - [ ] Visualize degradation curves per compound with scatter plots and regression lines
