@@ -59,7 +59,9 @@ For the 2021 Bahrain Grand Prix:
 | HARD | 0.0659 s/lap | Loses ~1.32s over 20 laps |
 | SOFT | 0.1161 s/lap | Loses ~2.32s over 20 laps |
 
-The HARD compound degraded at nearly half the rate of the SOFT, making it the more efficient strategic choice for long stints at Bahrain despite its lower peak grip.
+### Conclusion
+
+By utilizing linear regression on lap data collected via FastF1, I concluded that in the 2024 Bahrain Grand Prix, HARD tires completed an average-length stint approximately 21 seconds faster in aggregate than SOFT tires. Despite SOFT tires offering a faster base pace, their degradation rate of 0.116 s/lap versus 0.066 s/lap for HARD meant that over a full stint, the HARD compound's durability outweighed the SOFT's early pace advantage, making it the more strategically efficient choice at this circuit.
 
 ---
 
