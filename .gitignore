@@ -12,6 +12,7 @@ build/
 # OS files
 .DS_Store
 Thumbs.db
+cache
 
 # Logs
 *.log
