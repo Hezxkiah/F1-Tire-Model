@@ -1,12 +1,12 @@
 # F1 Tire Efficiency Analysis
 
-A data analysis project that uses the [FastF1](https://docs.fastf1.dev/) library to quantify tire compound degradation rates across Formula 1 races, using linear regression to determine which tire compound performs most efficiently at a given circuit.
+This is a data analysis project that uses the [FastF1](https://docs.fastf1.dev/) library to quantify tire compound degradation rates across Formula 1 races, using linear regression to determine which tire compound performs most efficiently at a given circuit.
 
 ---
 
 ## Project Goal
 
-F1 tire strategy is one of the most consequential decisions a team makes during a race weekend. The goal of this project is to move beyond intuition and quantify tire efficiency using real lap data, specifically, how many seconds per lap each compound loses as it ages.
+F1 tire strategy is one of the most influential decisions a team makes during a race weekend. The goal of this project is to quantify tire efficiency using real lap data, specifically, how many seconds per lap each compound loses as it ages.
 
 The core question: which tire compound degrades the least, and therefore offers the best strategic value at a given circuit?
 
@@ -15,7 +15,7 @@ The core question: which tire compound degrades the least, and therefore offers 
 ## Methodology
 
 ### 1. Data Collection
-Race session data is loaded via FastF1, which pulls official F1 timing and telemetry data. The following fields are extracted per lap:
+Race session data is loaded via FastF1 API, which pulls official F1 timing and telemetry data. The following fields are extracted per lap:
 
 | Field | Description |
 |---|---|
@@ -24,7 +24,7 @@ Race session data is loaded via FastF1, which pulls official F1 timing and telem
 | `Stint` | Which stint the lap belongs to |
 | `LapTime` | Raw lap duration (timedelta) |
 | `Compound` | Tire compound used (SOFT, MEDIUM, HARD, etc.) |
-| `TyreLife` | How many laps that set of tires has been on the car |
+| `TireLife` | How many laps that set of tires has been on the car |
 
 ### 2. Data Cleaning
 Several types of laps are removed before analysis because they distort true race pace:
@@ -36,13 +36,13 @@ Several types of laps are removed before analysis because they distort true race
 
 Tire degradation is modeled as a linear relationship between tire age and lap time:
 
-$$\text{LapTime} = \beta_0 + \beta_1 \times \text{TyreLife}$$
+$$\text{LapTime} = \beta_0 + \beta_1 \times \text{TireLife}$$
 
 Where:
 - $\beta_1$ (the slope) = **degradation rate** in seconds per lap
 - $\beta_0$ (the intercept) = **base pace** — the theoretical lap time on a fresh tire
 
-A higher slope means faster degradation. A negative slope (pace improving with age) typically indicates a data artifact, such as mixed driver speeds across stints.
+A higher slope means faster degradation while a negative slope pace means improvment with age.
 
 #### Why Per-Stint Regression?
 
@@ -65,15 +65,6 @@ By utilizing linear regression on lap data collected via FastF1, I concluded tha
 
 ---
 
-## Project Structure
-
-```
-F1 Model/
-│
-├── model.ipynb          # Main analysis notebook
-├── README.md            # This file
-└── venv/                # Python virtual environment (not tracked)
-```
 ## Dependencies
 
 | Library | Purpose |
@@ -87,7 +78,7 @@ F1 Model/
 
 ## Key Concepts
 
-**Degradation Rate** — The slope of a linear regression fit between TyreLife (x) and LapTimeSeconds (y) within a single stint. Measured in seconds per lap.
+**Degradation Rate** — The slope of a linear regression fit between TireLife (x) and LapTimeSeconds (y) within a single stint. Measured in seconds per lap.
 
 **Base Pace** — The intercept of the same regression. Represents the theoretical lap time on a brand new tire for that driver in that stint.
 
@@ -114,4 +105,4 @@ Session data is sourced via [FastF1](https://docs.fastf1.dev/), an open-source P
 
 ## Author
 
-Hezekiah Gitenyi — Computer Science & Math student at Texas A&M University
+Hezekiah Gitenyi — Computer Science student at Texas A&M University
