@@ -32,7 +32,7 @@ Several types of laps are removed before analysis because they distort true race
 - Laps with zero or negative lap times
 - Laps in the top 5% slowest (safety car periods, pit entry/exit laps, incidents)
 
-### 3. Degradation Rate Calculation
+### 3. Linear Degradation Rate Calculation
 
 Tire degradation is modeled as a linear relationship between tire age and lap time:
 
@@ -44,27 +44,6 @@ Where:
 
 A higher slope means faster degradation while a negative slope pace means improvment with age.
 
-#### Why Per-Stint Regression?
-
-A naive approach fits one regression line across all drivers on a given compound. This is flawed because different drivers have different raw pace. Mixing VER's 94s laps with a backmarker's 97s laps makes the compound appear to "change pace" when it's really just different drivers.
-
-The correct approach groups data by Driver + Stint, fits a regression within each individual stint, then averages the slopes by compound. This isolates the tire aging effect from driver speed differences.
-
-### 4. Results
-
-For the 2021 Bahrain Grand Prix:
-
-| Compound | Avg Degradation Rate | Interpretation |
-|---|---|---|
-| HARD | 0.0659 s/lap | Loses ~1.32s over 20 laps |
-| SOFT | 0.1161 s/lap | Loses ~2.32s over 20 laps |
-
-### Conclusion
-
-By utilizing linear regression on lap data collected via FastF1, I concluded that in the 2024 Bahrain Grand Prix, HARD tires completed an average-length stint approximately 21 seconds faster in aggregate than SOFT tires. Despite SOFT tires offering a faster base pace, their degradation rate of 0.116 s/lap versus 0.066 s/lap for HARD meant that over a full stint, the HARD compound's durability outweighed the SOFT's early pace advantage, making it the more strategically efficient choice at this circuit.
-
----
-
 ## Dependencies
 
 | Library | Purpose |
@@ -73,27 +52,6 @@ By utilizing linear regression on lap data collected via FastF1, I concluded tha
 | `pandas` | Data manipulation and groupby analysis |
 | `numpy` | Linear regression via `np.polyfit` |
 | `matplotlib` | Visualization (in progress) |
-
----
-
-## Key Concepts
-
-**Degradation Rate** — The slope of a linear regression fit between TireLife (x) and LapTimeSeconds (y) within a single stint. Measured in seconds per lap.
-
-**Base Pace** — The intercept of the same regression. Represents the theoretical lap time on a brand new tire for that driver in that stint.
-
-**Stint** — A continuous sequence of laps on the same set of tires between pit stops.
-
-**Efficiency** — A compound is considered more efficient if it has a lower degradation rate, meaning it loses less time per lap as it ages, even if its base pace is slightly slower.
-
----
-
-## Planned Extensions
-
-- [x] Combine degradation rate and base pace into a single efficiency score per compound
-- [x] Scale analysis across multiple races in a season to build circuit-by-circuit tire profiles
-- [ ] Add weather data integration (track temperature vs degradation rate)
-- [ ] Visualize degradation curves per compound with scatter plots and regression lines
 
 ---
 
