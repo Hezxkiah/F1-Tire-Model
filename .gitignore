@@ -30,4 +30,3 @@ venv/
 *.csv
 *.parquet
 *.json
-data/
